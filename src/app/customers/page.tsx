@@ -14,12 +14,12 @@ const Customers: React.FC = () => {
 
   return (
     <>
-      <div className="flex flex-col items-center justify-center h-screen bg-gray-100">
+      <div className="">
         <div>
-          <h1 className="text-4xl font-bold text-blue-500">CUSTOMERS</h1>
+          <h1 className="">CUSTOMERS</h1>
         </div>
         <div>
-          <button onClick={handleClick} disabled={isPending} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+          <button onClick={handleClick} disabled={isPending} className="">
             {isPending ? 'Loading...' : 'Get Customers'}
           </button>
         </div>

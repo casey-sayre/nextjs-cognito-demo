@@ -9,6 +9,9 @@ Built with
 
 ## Notes
 
+* The backend for this, a AWS CDK app that deploys a AWS Cognito User Pool, Lambdas, etc., is available 
+[here](https://github.com/casey-sayre/lambda-demo).
+
 * Cognito User Pool
    * Client type "Traditional web application" with client secret. 
    * scopes: email, openid, profile

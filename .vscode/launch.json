@@ -6,14 +6,14 @@
       "type": "node-terminal",
       "request": "launch",
       "command": "npm run dev",
-      "cwd": "${workspaceFolder}/nextjs-cognito-demo",
+      "cwd": "${workspaceFolder}",
     },
     {
       "name": "Next.js: debug client-side",
       "type": "chrome",
       "request": "launch",
       "url": "http://localhost:3000",
-      "cwd": "${workspaceFolder}/nextjs-cognito-demo",
+      "cwd": "${workspaceFolder}",
     },
     {
       "name": "Next.js: debug full stack",

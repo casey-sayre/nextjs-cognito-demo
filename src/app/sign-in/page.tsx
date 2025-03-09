@@ -15,7 +15,7 @@ export default async function SignIn() {
           await signIn("cognito");
         }}
       >
-        <button type="submit" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Signin with Cognito</button>
+        <button type="submit" className="">Signin with Cognito</button>
       </form>
     </>
   );
