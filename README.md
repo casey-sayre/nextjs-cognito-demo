@@ -4,8 +4,16 @@ Login, Logout, call an (authenticated) API
 
 Built with
 * [Next.js](https://nextjs.org/)
-* [Auth.js formerly NextAuth v5](https://authjs.dev/)
-* [AWS Cognito](https://aws.amazon.com/pm/cognito)
+* [Auth.js formerly NextAuth v5](https://authjs.dev/) (Cognito provider)
+
+To Run:
+
+```
+npm i
+npm run dev
+
+open a browser at http://localhost:3000
+```
 
 ## Notes
 
@@ -20,3 +28,8 @@ Built with
 * src/auth.ts is worth a look
 
 * in the spirit of Next.js, all API calls are made from server side components
+
+* if npm and node fail to start in the devcontainer, change autoAttachFilter from `smart` -> `disabled` -> `smart`.  
+```
+"debug.javascript.autoAttachFilter": "smart"
+```

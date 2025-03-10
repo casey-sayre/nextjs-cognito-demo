@@ -7,8 +7,8 @@ export default async function Home() {
     redirect('/dashboard')
   }
   return (
-    <div className="">
-      <h1 className="">HELLO</h1>
-    </div>
+      <div className="">
+        <h1 className="">HELLO</h1>
+      </div>
   );
 }
