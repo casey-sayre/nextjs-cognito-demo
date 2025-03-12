@@ -6,14 +6,12 @@
       "type": "node-terminal",
       "request": "launch",
       "command": "npm run dev",
-      "cwd": "${workspaceFolder}",
     },
     {
       "name": "Next.js: debug client-side",
       "type": "chrome",
       "request": "launch",
       "url": "http://localhost:3000",
-      "cwd": "${workspaceFolder}",
     },
     {
       "name": "Next.js: debug full stack",
@@ -27,7 +25,7 @@
         "<node_internals>/**"
       ],
       "serverReadyAction": {
-        "action": "debugWithEdge",
+        "action": "debugWithChrome",
         "killOnServerStop": true,
         "pattern": "- Local:.+(https?://.+)",
         "uriFormat": "%s",

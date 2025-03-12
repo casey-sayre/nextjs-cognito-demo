@@ -1,4 +1,3 @@
-// app/api/customers/route.ts
 import { NextResponse } from 'next/server';
 import { getToken } from 'next-auth/jwt';
 import { NextRequest } from 'next/server';
@@ -8,12 +7,16 @@ const API_ENDPOINT = `${API_GATEWAY_BASE_URL}/customers`;
 
 export async function GET(req: NextRequest) {
   const token = await getToken({ req, secret: process.env.AUTH_SECRET });
-
-  if (!token?.idToken) {
-    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+  const idToken = token?.idToken;
+  if (!idToken) {
+    return NextResponse.json(
+      { 
+        error: 'Unauthorized',
+        message: "No id token found"
+      }, 
+      { status: 401 }
+    );
   }
-
-  const idToken = token.idToken;
 
   try {
     const response = await fetch(API_ENDPOINT, {
@@ -26,7 +29,7 @@ export async function GET(req: NextRequest) {
       return NextResponse.json({ error: 'External API error' }, { status: response.status });
     }
 
-    const customers = await response.json(); // Assuming the API returns a JSON array of customers
+    const customers = await response.json(); // API returns a JSON array of customers
     return NextResponse.json(customers);
   } catch (error) {
     console.error('External API call error:', error);
@@ -36,12 +39,16 @@ export async function GET(req: NextRequest) {
 
 export async function POST(req: NextRequest) {
   const token = await getToken({ req, secret: process.env.AUTH_SECRET });
-
-  if (!token?.idToken) {
-    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+  const idToken = token?.idToken;
+  if (!idToken) {
+    return NextResponse.json(
+      { 
+        error: 'Unauthorized',
+        message: "No id token found"
+      }, 
+      { status: 401 }
+    );
   }
-
-  const idToken = token.idToken;
 
   try {
     const body = await req.json();
@@ -58,7 +65,7 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'External API error' }, { status: response.status });
     }
 
-    const newCustomer = await response.json(); // Assuming the external API returns the created customer
+    const newCustomer = await response.json(); // external API returns the created customer
     return NextResponse.json(newCustomer);
   } catch (error) {
     console.error('External API call error:', error);

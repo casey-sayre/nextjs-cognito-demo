@@ -4,18 +4,17 @@
 import { useState, useEffect } from 'react';
 import Box from '@mui/material/Box';
 import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemText from '@mui/material/ListItemText';
 import Typography from '@mui/material/Typography';
 import { redirect, useRouter } from 'next/navigation';
 import IconButton from '@mui/material/IconButton';
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import { isCustomErrorPage } from 'next/dist/build/utils';
 
 interface Customer {
   id: number;
   name: string;
-  // ... other customer properties
 }
 
 export default function CustomersPage() {
@@ -64,24 +63,39 @@ export default function CustomersPage() {
   }
 
   return (
-    <Box sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
-      <Box display="flex" alignItems="center">
-        <Typography variant="h4" gutterBottom>
-          Customers
-        </Typography>
-        <IconButton aria-label="create" sx={{ marginLeft: '16px' }} onClick={handleAddClick}>
-          <PersonAddIcon />
-        </IconButton>
+    <Box sx={{
+      display: 'flex',
+      justifyContent: 'center',
+      width: '100vw',
+      bgcolor: 'background.paper'
+    }}>
+      <Box sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
+        <Box display="flex" alignItems="center">
+          <Typography variant="h4" gutterBottom>
+            Customers
+          </Typography>
+          <IconButton aria-label="create" sx={{ marginLeft: '16px' }} onClick={handleAddClick}>
+            <PersonAddIcon />
+          </IconButton>
+        </Box>
+        <Box sx={{
+          display: "grid",
+          gap: 2
+        }}>
+          {customers.map((customer) => (
+            <Card key={customer.id}>
+            <CardContent sx={{ height: '100%' }}>
+              <Typography variant="h5" component="div">
+                {customer.name}
+              </Typography>
+              <Typography variant="body2" color="text.secondary">
+                {customer.id}
+              </Typography>
+            </CardContent>
+            </Card>
+          ))}
+        </Box>
       </Box>
-      <List>
-        {customers.map((customer) => (
-          <ListItem disablePadding key={customer.id}>
-            <ListItemButton onClick={() => handleClick(customer)}>
-              <ListItemText primary={customer.name} />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
     </Box>
   );
 }
