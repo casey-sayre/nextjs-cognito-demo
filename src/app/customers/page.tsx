@@ -3,14 +3,12 @@
 
 import { useState, useEffect } from 'react';
 import Box from '@mui/material/Box';
-import List from '@mui/material/List';
 import Typography from '@mui/material/Typography';
-import { redirect, useRouter } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import IconButton from '@mui/material/IconButton';
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
-import { isCustomErrorPage } from 'next/dist/build/utils';
 
 interface Customer {
   id: number;
@@ -58,9 +56,9 @@ export default function CustomersPage() {
     return <p>Error: {error}</p>;
   }
 
-  const handleClick = (customer: Customer) => {
-    redirect(`/customers/${customer.id}`)
-  }
+  // const handleClick = (customer: Customer) => {
+  //   redirect(`/customers/${customer.id}`)
+  // }
 
   return (
     <Box sx={{
@@ -84,14 +82,14 @@ export default function CustomersPage() {
         }}>
           {customers.map((customer) => (
             <Card key={customer.id}>
-            <CardContent sx={{ height: '100%' }}>
-              <Typography variant="h5" component="div">
-                {customer.name}
-              </Typography>
-              <Typography variant="body2" color="text.secondary">
-                {customer.id}
-              </Typography>
-            </CardContent>
+              <CardContent sx={{ height: '100%' }}>
+                <Typography variant="h5" component="div">
+                  {customer.name}
+                </Typography>
+                <Typography variant="body2" color="text.secondary">
+                  {customer.id}
+                </Typography>
+              </CardContent>
             </Card>
           ))}
         </Box>

@@ -1,9 +1,8 @@
-// app/api/customers/[id]/route.ts
 import { NextResponse } from 'next/server';
 import { getToken } from 'next-auth/jwt';
 import { NextRequest } from 'next/server';
 
-export async function GET(req: NextRequest, { params }: { params: { id: string } }) {
+export async function GET(req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   const token = await getToken({ req, secret: process.env.AUTH_SECRET });
 
   if (!token?.idToken) {
@@ -11,7 +10,7 @@ export async function GET(req: NextRequest, { params }: { params: { id: string }
   }
 
   const idToken = token.idToken;
-  const customerId = params.id; // Get the dynamic ID from the URL
+  const customerId = (await params).id; // Get the dynamic ID from the URL
 
   try {
     const response = await fetch(`YOUR_EXTERNAL_API_CUSTOMER_ENDPOINT/${customerId}`, { // Replace with your API endpoint

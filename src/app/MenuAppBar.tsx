@@ -17,7 +17,7 @@ import Button from '@mui/material/Button';
 export default function MenuAppBar() {
   const [sessionMenuAnchorEl, setSessionMenuAnchorEl] = React.useState<null | HTMLElement>(null);
   const [navMenuAnchorEl, setNavMenuAnchorEl] = React.useState<null | HTMLElement>(null);
-  const { data: session, status } = useSession();
+  const { status } = useSession();
   const router = useRouter();
 
   const handleSessionMenuOpen = (event: React.MouseEvent<HTMLElement>) => {

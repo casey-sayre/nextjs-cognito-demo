@@ -8,6 +8,7 @@ export interface CognitoSession extends Session {
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
   providers: [Cognito],
+  trustHost: true, // NOTE dev only
   callbacks: {
     jwt({ token, user, account }) {
       if (user) { // User is available during sign-in
